@@ -108,3 +108,18 @@ updatePercentage();
 // Set interval to update the percentage every minute
 setInterval(updatePercentage, 60000); // Update every minute
 
+// 
+
+fetch('https://api.devexcus.es/')
+    .then(response => response.json()) // Parse the JSON response
+    .then(data => {
+        const excuse = data.text; // Get the excuse from the JSON data
+        
+        // Update the content of the 'excuse' div with the fetched excuse
+        document.getElementById('excuse').innerText = excuse;
+    })
+    .catch(error => {
+        console.error('Error fetching excuse:', error);
+    });
+
+// 
