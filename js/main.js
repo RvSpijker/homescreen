@@ -130,6 +130,7 @@ const backgrounds = [
   "https://i.pinimg.com/originals/e4/e9/a1/e4e9a1e974e80fd3919c609b5cbc4fc7.jpg",
   "https://c4.wallpaperflare.com/wallpaper/296/96/958/hollow-knight-quirrel-hollow-knight-hd-wallpaper-preview.jpg",
   "https://i.pinimg.com/736x/ab/a1/fe/aba1fe00d1d1204a4761ceac6af380e9.jpg",
+  "https://wallpapercave.com/wp/wp2852206.jpg",
 ];
 
 // Function to pick a random background
