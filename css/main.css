@@ -188,4 +188,187 @@ a {
 }
 
 /*  */
+.sr-only {
+  display: none;
+}
 
+.ContributionCalendar-day {
+  border-radius: 2px;
+}
+
+.calendar {
+  border: none !important;
+  height: 200px;
+}
+
+:root {
+  --color-calendar-graph-day-bg: #ffffff30;
+  --color-calendar-graph-day-L1-bg: #39dd34;
+  --color-calendar-graph-day-L2-bg: #45a045;
+  --color-calendar-graph-day-L3-bg: #047526;
+  --color-calendar-graph-day-L4-bg: #0a4208;
+}
+
+.ContributionCalendar-day[data-level='0'] {
+    background-color: var(--color-calendar-graph-day-bg);
+}
+
+.ContributionCalendar-day[data-level='1'] {
+    background-color: var(--color-calendar-graph-day-L1-bg);
+}
+
+.ContributionCalendar-day[data-level='2'] {
+    background-color: var(--color-calendar-graph-day-L2-bg);
+}
+
+.ContributionCalendar-day[data-level='3'] {
+    background-color: var(--color-calendar-graph-day-L3-bg);
+}
+
+.ContributionCalendar-day[data-level='4'] {
+    background-color: var(--color-calendar-graph-day-L4-bg);
+}
+
+table.ContributionCalendar-grid {
+    margin-bottom: 0pt;
+}
+
+table.ContributionCalendar-grid td {
+    padding: 4pt;
+}
+
+table.ContributionCalendar-grid td span.sr-only {
+    display: none;
+}
+
+td.ContributionCalendar-label span[aria-hidden='true'] {
+    display: none;
+}
+
+tool-tip {
+    display: none;
+}
+
+.calendar .width-full > .float-left {
+    display: none;
+}
+
+.calendar {
+      font-family: Helvetica, arial;
+      border: 1px solid #DDDDDD;
+      border-radius: 3px;
+      min-height: 243px;
+      text-align: center;
+      margin: 0 auto;
+}
+
+.calendar-graph text.wday,
+.calendar-graph text.month {
+  display: none;
+}
+
+div.px-md-5 {
+   display: none;
+}
+
+div.float-right {
+  display: none;
+}
+
+div.float-right div {
+  display: none;
+}
+
+div.float-right span.sr-only {
+    display: none;
+}
+
+.contrib-legend .legend li {
+  display: none;
+}
+
+.text-small {
+  display: none;
+}
+
+.calendar-graph {
+  display: none;
+}
+
+.contrib-column {
+  display: none;
+}
+
+.contrib-column-first {
+  display: none;
+}
+
+.table-column {
+  display: none;
+}
+
+.contrib-number {
+  display: none;
+}
+
+.calendar img.spinner {
+  display: none;
+}
+
+.monospace {
+  display: none;
+}
+
+.monospace a {
+  display: none;
+}
+
+.contrib-footer {
+  display: none;
+}
+
+.left.text-muted {
+  display: none;
+}
+.left.text-muted a {
+  display: none;
+}
+.left.text-muted a:hover,
+.monospace a:hover {
+    text-decoration: underline;
+}
+
+h2.f4.text-normal.mb-3 {
+    display: none;
+}
+
+.float-left.text-gray {
+    float: left;
+}
+#user-activity-overview{
+    display:none;
+}
+
+.day-tooltip {
+  display: none;
+}
+.day-tooltip strong {
+    color: #dfe2e5;
+}
+.day-tooltip.is-visible {
+    display: block;
+}
+.day-tooltip:after {
+  display: none;
+}
+
+text.ContributionCalendar-label {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .table-column {
+        display: block;
+        width: 100%;
+    }
+}
