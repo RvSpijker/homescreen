@@ -148,3 +148,9 @@ fetch('https://api.devexcus.es/')
     updateVideoURL();
   };
 
+    // JavaScript to hide the placeholder background after 2 seconds of video load
+    document.getElementById('bg').addEventListener('load', function() {
+      setTimeout(function() {
+        document.querySelector('.placeholder-bg').style.display = 'none';
+      }, 2000); // 2000 milliseconds = 2 seconds
+    });
