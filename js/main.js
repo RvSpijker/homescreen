@@ -148,9 +148,14 @@ fetch('https://api.devexcus.es/')
     updateVideoURL();
   };
 
-    // JavaScript to hide the placeholder background after 2 seconds of video load
-    document.getElementById('bg').addEventListener('load', function() {
+  document.getElementById('bg').addEventListener('load', function() {
+    setTimeout(function() {
+      var placeholderBg = document.querySelector('.placeholder-bg');
+      placeholderBg.style.transition = 'opacity 1s ease-in-out'; // Set transition property
+      placeholderBg.style.opacity = '0'; // Set opacity to 0 for fadeout effect
       setTimeout(function() {
-        document.querySelector('.placeholder-bg').style.display = 'none';
-      }, 2000); // 2000 milliseconds = 2 seconds
-    });
+        placeholderBg.style.display = 'none'; // Hide the placeholder background after fadeout
+      }, 1000); // Wait for 1 second before hiding (sync with the transition duration)
+    }, 2000); // 2000 milliseconds = 2 seconds
+  });
+  
