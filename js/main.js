@@ -66,13 +66,13 @@ function updateNumber (element, number) {
 
   setTimeout(function () {
     element.classList.remove('move')
-  }, 990)
+  }, 950)
   setTimeout(function () {
     element.removeChild(element.firstElementChild)
-  }, 990)
+  }, 950)
 }
 
-setInterval(updateTime, 100)
+setInterval(updateTime, 1000)
 
 // 
 
