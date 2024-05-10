@@ -72,7 +72,7 @@ function updateNumber (element, number) {
   }, 950)
 }
 
-setInterval(updateTime, 1000)
+setInterval(updateTime, 100)
 
 // 
 
