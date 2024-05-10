@@ -123,33 +123,28 @@ fetch('https://api.devexcus.es/')
     });
 
 // 
+  // Function to generate a random time offset in seconds
+  function getRandomTimeOffset() {
+    // Set the maximum duration of the video in seconds (1 hour = 3600 seconds)
+    var maxDuration = 3600;
 
-// Function to fetch random background image
-function setRandomBackground() {
-  // Path to the background folder
-  const backgroundFolder = 'img/';
+    // Generate a random number between 0 and maxDuration
+    var randomOffset = Math.floor(Math.random() * maxDuration);
 
-  // Fetch the list of background images from the folder
-  fetch(backgroundFolder)
-    .then(response => response.text())
-    .then(text => {
-      // Extract image filenames from the HTML response
-      const parser = new DOMParser();
-      const htmlDoc = parser.parseFromString(text, 'text/html');
-      const imageElements = htmlDoc.querySelectorAll('a[href$=".jpg"], a[href$=".png"], a[href$=".jpeg"]');
-      const imageFilenames = Array.from(imageElements).map(element => element.getAttribute('href'));
+    return randomOffset;
+  }
 
-      // Pick a random image filename
-      const randomIndex = Math.floor(Math.random() * imageFilenames.length);
-      const randomImage = imageFilenames[randomIndex];
+  // Function to update the video URL with a random start time
+  function updateVideoURL() {
+    var video = document.getElementById('bg');
+    var randomOffset = getRandomTimeOffset();
+    var videoURL = "https://www.youtube.com/embed/2kCYlUUupyM?mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=2kCYlUUupyM&autoplay=1&start=" + randomOffset;
 
-      // Set the random background image
-      document.querySelector('.random-background').style.backgroundImage = `url('${backgroundFolder}${randomImage}')`;
-    })
-    .catch(error => {
-      console.error('Error fetching background images:', error);
-    });
-}
+    video.src = videoURL;
+  }
 
-// Set initial random background
-setRandomBackground();
+  // Call the function to update the video URL when the page loads
+  window.onload = function() {
+    updateVideoURL();
+  };
+
