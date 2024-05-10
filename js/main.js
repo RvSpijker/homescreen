@@ -124,20 +124,31 @@ fetch('https://api.devexcus.es/')
 
 // 
 
-// Array of background image URLs
-const backgrounds = [
-  "https://store-images.s-microsoft.com/image/apps.24270.13847644057609868.a4a91f76-8d1c-4e19-aa78-f4d27d2818fb.d96146d7-d00a-4db9-ad68-197b2f962a17",
-  "https://i.pinimg.com/originals/e4/e9/a1/e4e9a1e974e80fd3919c609b5cbc4fc7.jpg",
-  "https://c4.wallpaperflare.com/wallpaper/296/96/958/hollow-knight-quirrel-hollow-knight-hd-wallpaper-preview.jpg",
-  "https://i.pinimg.com/736x/ab/a1/fe/aba1fe00d1d1204a4761ceac6af380e9.jpg",
-  "https://wallpapercave.com/wp/wp2852206.jpg",
-];
-
-// Function to pick a random background
+// Function to fetch random background image
 function setRandomBackground() {
-  const randomIndex = Math.floor(Math.random() * backgrounds.length);
-  const randomBackground = backgrounds[randomIndex];
-  document.querySelector('.random-background').style.backgroundImage = `url(${randomBackground})`;
+  // Path to the background folder
+  const backgroundFolder = 'img/';
+
+  // Fetch the list of background images from the folder
+  fetch(backgroundFolder)
+    .then(response => response.text())
+    .then(text => {
+      // Extract image filenames from the HTML response
+      const parser = new DOMParser();
+      const htmlDoc = parser.parseFromString(text, 'text/html');
+      const imageElements = htmlDoc.querySelectorAll('a[href$=".jpg"], a[href$=".png"], a[href$=".jpeg"]');
+      const imageFilenames = Array.from(imageElements).map(element => element.getAttribute('href'));
+
+      // Pick a random image filename
+      const randomIndex = Math.floor(Math.random() * imageFilenames.length);
+      const randomImage = imageFilenames[randomIndex];
+
+      // Set the random background image
+      document.querySelector('.random-background').style.backgroundImage = `url('${backgroundFolder}${randomImage}')`;
+    })
+    .catch(error => {
+      console.error('Error fetching background images:', error);
+    });
 }
 
 // Set initial random background
