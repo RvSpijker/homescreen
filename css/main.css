@@ -1,3 +1,36 @@
+/* Add this CSS to style the settings button and slider */
+#settingsBtn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+  /* rmv btn stlye */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: -300px; /* Hide the slider initially */
+  width: 250px;
+  height: 100%;
+  padding: 24px;
+  padding-top: 60px;
+  background: darkgray;
+  border: 1px solid #ccc;
+  transition: left 0.3s ease;
+}
+
+#settingsSlider.open {
+  left: 0px; /* Slide the slider into view */
+}
+
+
 .placeholder-bg {
   position: absolute;
   top: 0;
@@ -21,7 +54,10 @@
 }
 
 .grid {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   max-width: 100vw;
 }
 
@@ -53,7 +89,7 @@ body {
 .form-control {
   position: relative;
   margin: 20px 0 40px;
-  width: 100%;
+  width: 986px;
 }
 
 .form-control input {
@@ -161,6 +197,7 @@ body {
     transform: translateY(-10vh);
   }
 }
+
 
 /*  */
 

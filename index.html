@@ -9,66 +9,94 @@
   <script
   src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
 </head>
-<body>
+<body>  
   <div id="bg_container">
     <div class="placeholder-bg"></div> <!-- Placeholder background -->
     <iframe class="bg" id="bg" src="https://www.youtube.com/embed/2kCYlUUupyM?mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=2kCYlUUupyM&autoplay=1" frameborder="0"></iframe>
   </div>
+
+  <!-- Add this button inside the <body> tag -->
+  <button id="settingsBtn">&#9881;</button>
+
+  <!-- Add this slider as the first child of the <body> tag -->
+  <div class="sidebar" id="settingsSlider">
+    <label><input name="search" onclick="toggleComponent('search')" type="checkbox" checked>Seachbar</label>
+    <label><input name="links" onclick="toggleComponent('links')" type="checkbox" checked>Quicklinks</label>
+    <label><input name="percent1" onclick="toggleComponent('percent1')" type="checkbox" checked>Work Hours percent</label>
+    <label><input name="percent2" onclick="toggleComponent('percent2')" type="checkbox" checked>Weekend percent</label>
+    <label><input name="excuse1" onclick="toggleComponent('excuse1')" type="checkbox" checked>Excuse</label>
+    <label><input name="calendar1" onclick="toggleComponent('calendar1')" type="checkbox" checked>GithubCalendar</label>
+
+  </div>
+
   
   <div class="grid">
-    <div class="clock">
-      <div class="hours">
-        <div class="first">
-          <div class="number">0</div>
+    <div id="clock">
+      <div class="clock">
+        <div class="hours">
+          <div class="first">
+            <div class="number">0</div>
+          </div>
+          <div class="second">
+            <div class="number">0</div>
+          </div>
         </div>
-        <div class="second">
-          <div class="number">0</div>
+        <div class="tick">:</div>
+        <div class="minutes">
+          <div class="first">
+            <div class="number">0</div>
+          </div>
+          <div class="second">
+            <div class="number">0</div>
+          </div>
         </div>
-      </div>
-      <div class="tick">:</div>
-      <div class="minutes">
-        <div class="first">
-          <div class="number">0</div>
-        </div>
-        <div class="second">
-          <div class="number">0</div>
-        </div>
-      </div>
-      <div class="tick">:</div>
-      <div class="seconds">
-        <div class="first">
-          <div class="number">0</div>
-        </div>
-        <div class="second infinite">
-          <div class="number">0</div>
+        <div class="tick">:</div>
+        <div class="seconds">
+          <div class="first">
+            <div class="number">0</div>
+          </div>
+          <div class="second infinite">
+            <div class="number">0</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <form method="GET" action="https://www.google.com/search">
-      <div class="form-control">
-        <input name="q" type="value" required="">
-        <label>
-            <span style="transition-delay:0ms">S</span><span style="transition-delay:50ms">e</span><span style="transition-delay:100ms">a</span><span style="transition-delay:150ms">r</span><span style="transition-delay:200ms">c</span><span style="transition-delay:250ms">h</span>
-        </label>
-      </div>
-    </form>
-
-    <div class="quicklinks">
-      <a class="link" href="https://ao-alfa.org:8443/login_up.php"><img src="https://ao-alfa.org:8443/images/logos/JYQwgGV40h8.png" width="24px" height="24px"><h1 class="linktext">AO Alfa</h1></a>
-      <a class="link" href="https://myapplications.microsoft.com/"><img src="https://icons.duckduckgo.com/ip3/myapplications.microsoft.com.ico" width="24px" height="24px"><h1 class="linktext">Alfa Connect</h1></a>
-      <a class="link" href="https://alfa-college.itslearning.com/main.aspx?TextURL=CourseCards"><img src="https://icons.duckduckgo.com/ip3/alfa-college.itslearning.com.ico" width="24px" height="24px"><h1 class="linktext">ItsLearning</h1></a>
-      <a class="link" href="https://www.youtube.com/"><img src="https://www.youtube.com/s/desktop/661c298b/img/favicon_144x144.png" width="24px" height="24px"><h1 class="linktext">Youtube</h1></a>
-      <a class="link" href="0"><img src="https://play-lh.googleusercontent.com/bGn6qxUHwqZmgtv7RwgxCzl4Uy26SFQrJljVmoOvoIKWa-Xty8s0vOUWcgovUAEAKXnI" width="24px" height="24px"><h1 class="linktext">Homeassistant</h1></a>
+    <div id="search">
+      <form id="search" method="GET" action="https://www.google.com/search">
+        <div class="form-control">
+          <input name="q" type="value" required="">
+          <label>
+              <span style="transition-delay:0ms">S</span><span style="transition-delay:50ms">e</span><span style="transition-delay:100ms">a</span><span style="transition-delay:150ms">r</span><span style="transition-delay:200ms">c</span><span style="transition-delay:250ms">h</span>
+          </label>
+        </div>
+      </form>
     </div>
 
-    <h1 class="timepercent" id="timepercent"></h1>
+    <div id="links">
+      <div class="quicklinks">
+        <a class="link" href="https://ao-alfa.org:8443/login_up.php"><img src="https://ao-alfa.org:8443/images/logos/JYQwgGV40h8.png" width="24px" height="24px"><h1 class="linktext">AO Alfa</h1></a>
+        <a class="link" href="https://myapplications.microsoft.com/"><img src="https://icons.duckduckgo.com/ip3/myapplications.microsoft.com.ico" width="24px" height="24px"><h1 class="linktext">Alfa Connect</h1></a>
+        <a class="link" href="https://alfa-college.itslearning.com/main.aspx?TextURL=CourseCards"><img src="https://icons.duckduckgo.com/ip3/alfa-college.itslearning.com.ico" width="24px" height="24px"><h1 class="linktext">ItsLearning</h1></a>
+        <a class="link" href="https://www.youtube.com/"><img src="https://www.youtube.com/s/desktop/661c298b/img/favicon_144x144.png" width="24px" height="24px"><h1 class="linktext">Youtube</h1></a>
+        <a class="link" href="0"><img src="https://play-lh.googleusercontent.com/bGn6qxUHwqZmgtv7RwgxCzl4Uy26SFQrJljVmoOvoIKWa-Xty8s0vOUWcgovUAEAKXnI" width="24px" height="24px"><h1 class="linktext">Homeassistant</h1></a>
+      </div>
+    </div>
 
-    <div>
+    <div id="percent1">
+      <h1 class="timepercent" id="timepercent"></h1>
+    </div>
+    <div id="percent2">
+      <h1 class="timepercent" id="weekendpercent"></h1>
+    </div>
+
+    <div id="excuse1">
       <div class="excuse" id="excuse"></div>
     </div>
 
-    <div class="calendar">
+    <div id="calendar1">
+      <div id="calendar" class="calendar">
+    </div>
   </div>
   </div>
   <script>

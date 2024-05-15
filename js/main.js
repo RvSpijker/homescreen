@@ -1,3 +1,68 @@
+// Add this JavaScript to handle the settings button functionality
+document.getElementById('settingsBtn').addEventListener('click', function() {
+  document.getElementById('settingsSlider').classList.toggle('open');
+});
+
+// check local storage for wich components to show
+
+// Get the value from local storage
+var showSearch = localStorage.getItem('showsearch');
+var showLinks = localStorage.getItem('showlinks');
+var showTimepercent = localStorage.getItem('showpercent1');
+var showWeekendpercent = localStorage.getItem('showpercent2');
+var showExcuse = localStorage.getItem('showexcuse1');
+var showCalendar = localStorage.getItem('showcalendar1');
+
+if (showSearch === 'false') {
+  document.getElementById('search').style.display = 'none';
+  document.querySelector('input[name="search"]').checked = false;
+}
+
+if (showLinks === 'false') {
+  document.getElementById('links').style.display = 'none';
+  document.querySelector('input[name="links"]').checked = false;
+}
+
+if (showTimepercent === 'false') {
+  document.getElementById('percent1').style.display = 'none';
+  document.querySelector('input[name="percent1"]').checked = false;
+}
+
+if (showWeekendpercent === 'false') {
+  document.getElementById('percent2').style.display = 'none';
+  document.querySelector('input[name="percent2"]').checked = false;
+}
+
+if (showExcuse === 'false') {
+  document.getElementById('excuse1').style.display = 'none';
+  document.querySelector('input[name="excuse1"]').checked = false;
+}
+
+if (showCalendar === 'false') {
+  document.getElementById('calendar1').style.display = 'none';
+  document.querySelector('input[name="calendar1"]').checked = false;
+}
+
+function toggleComponent(component) {
+  if (localStorage.getItem('show' + component) === 'false') {
+    document.getElementById(component).style.display = 'block';
+    localStorage.setItem('show' + component, 'true');
+  } else {
+    // Toggle the class 'hidden' on the component
+    document.getElementById(component).style.display = 'none';
+    // Save the value to local storage
+    localStorage.setItem('show' + component, 'false');
+  }
+}
+
+
+
+
+// Add similar event listeners for other components you want to hide
+
+
+// 
+
 var hoursContainer = document.querySelector('.hours')
 var minutesContainer = document.querySelector('.minutes')
 var secondsContainer = document.querySelector('.seconds')
@@ -107,6 +172,50 @@ updatePercentage();
 
 // Set interval to update the percentage every minute
 setInterval(updatePercentage, 60000); // Update every minute
+
+function updateWeekendPercent() {
+  // Tijd nu ophalen
+  const nu = new Date();
+
+  // Het huidige uur van de dag ophalen
+  const huidigUur = nu.getHours();
+  const huidigeMinuut = nu.getMinutes();
+
+  // Het huidige dagnummer ophalen (0 voor zondag, 1 voor maandag, ..., 6 voor zaterdag)
+  const dagNummer = nu.getDay();
+
+  // Aantal uren van 9:00 tot 17:00
+  const urenPerDag = 8;
+
+  // Totaal aantal minuten in een uur
+  const totaalMinutenPerUur = 60;
+
+  // Totaal aantal uren in een week
+  const totaalUrenPerWeek = 5 * urenPerDag;
+
+  // Bereken het aantal uren tot nu vandaag
+  let totaalUrenVandaag = 0;
+  if (huidigUur >= 9 && huidigUur < 17) {
+      totaalUrenVandaag = huidigUur - 9 + huidigeMinuut / totaalMinutenPerUur;
+  } else if (huidigUur >= 17) {
+      totaalUrenVandaag = urenPerDag;
+  }
+
+  // Bereken het totale aantal uren tot nu deze week
+  let totaalUrenDezeWeek = (dagNummer - 1) * urenPerDag; // Omdat de week begint op maandag (dagNummer = 1)
+  totaalUrenDezeWeek += totaalUrenVandaag;
+
+  // Bereken het percentage voorbij tot het weekend
+  const percentageVoorbij = (totaalUrenDezeWeek / totaalUrenPerWeek) * 100;
+
+  // Update de inner text van het element met id "weekendPercent"
+  document.getElementById("weekendpercent").innerText = percentageVoorbij.toFixed() + "%";
+}
+
+// Roep de functie aan om de inner text bij te werken wanneer de pagina geladen is
+updateWeekendPercent();
+setInterval(updateWeekendPercent, 60000); // Update every minute
+
 
 // 
 
