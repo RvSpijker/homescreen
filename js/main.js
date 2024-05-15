@@ -1,3 +1,33 @@
+// Check if the browser supports notifications
+if (!("Notification" in window)) {
+  alert("This browser does not support desktop notification");
+}
+
+// Ask the user for permission to show notifications
+else if (Notification.permission !== "denied") {
+  Notification.requestPermission().then(function (permission) {
+    // If the user accepts, schedule the notification for 1 PM
+    if (permission === "granted") {
+      var now = new Date();
+      var oneHourFromNow = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 13, 0, 0); // Set time to 1 PM
+      
+      var timeUntilNotification = oneHourFromNow.getTime() - now.getTime();
+      
+      // Schedule the notification for 1 PM
+      setTimeout(function() {
+        var options = {
+          icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAN0yta8AWJPGQA_ulSF3gMXEXS2r3uWBk-fuKkPvrYQ&s', // Replace 'path/to/your/image.png' with the actual path to your image
+          body: 'Time to Walk' // Add a body text if needed
+        };
+        
+        var notification = new Notification("Time to Walk!", options);
+      }, timeUntilNotification);
+    }
+  });
+}
+
+
+
 // Add this JavaScript to handle the settings button functionality
 document.getElementById('settingsBtn').addEventListener('click', function() {
   document.getElementById('settingsSlider').classList.toggle('open');
