@@ -273,11 +273,33 @@ fetch('https://api.devexcus.es/')
     return randomOffset;
   }
 
+// 
+
+const inputField = document.getElementById('inputField');
+const savedValue = localStorage.getItem('inputFieldValue');
+
+if (savedValue) {
+  inputField.value = savedValue;
+}
+
+  inputField.addEventListener('input', function() {
+    localStorage.setItem('videolink', inputField.value);
+    updateVideoURL();
+  });
+
   // Function to update the video URL with a random start time
   function updateVideoURL() {
     var video = document.getElementById('bg');
     var randomOffset = getRandomTimeOffset();
-    var videoURL = "https://www.youtube.com/embed/2kCYlUUupyM?mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=2kCYlUUupyM&autoplay=1&start=" + randomOffset;
+    if (localStorage.getItem('videolink') === undefined) {
+    var videourl = "2kCYlUUupyM";
+    } else { 
+      var videourl = localStorage.getItem('videolink');
+      var splited = videourl.split("v=");
+      var splitedAgain = splited[1].split("&");
+      var videoId = splitedAgain[0];
+    }
+    var videoURL = "https://www.youtube.com/embed/" + videoId + "?mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=" + videoId + "&autoplay=1&start=" + randomOffset;
 
     video.src = videoURL;
   }

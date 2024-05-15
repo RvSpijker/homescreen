@@ -12,7 +12,7 @@
 <body>  
   <div id="bg_container">
     <div class="placeholder-bg"></div> <!-- Placeholder background -->
-    <iframe class="bg" id="bg" src="https://www.youtube.com/embed/2kCYlUUupyM?mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=2kCYlUUupyM&autoplay=1" frameborder="0"></iframe>
+    <iframe class="bg" id="bg" src="https://www.youtube.com/embed/2kCYlUUupyM?mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=2kCYlUUupyM&autoplay=1&start=400" frameborder="0"></iframe>
   </div>
 
   <!-- Add this button inside the <body> tag -->
@@ -20,12 +20,44 @@
 
   <!-- Add this slider as the first child of the <body> tag -->
   <div class="sidebar" id="settingsSlider">
-    <label><input name="search" onclick="toggleComponent('search')" type="checkbox" checked>Seachbar</label>
-    <label><input name="links" onclick="toggleComponent('links')" type="checkbox" checked>Quicklinks</label>
-    <label><input name="percent1" onclick="toggleComponent('percent1')" type="checkbox" checked>Work Hours percent</label>
-    <label><input name="percent2" onclick="toggleComponent('percent2')" type="checkbox" checked>Weekend percent</label>
-    <label><input name="excuse1" onclick="toggleComponent('excuse1')" type="checkbox" checked>Excuse</label>
-    <label><input name="calendar1" onclick="toggleComponent('calendar1')" type="checkbox" checked>GithubCalendar</label>
+    <label class="switch">
+      <input name="search" onclick="toggleComponent('search')" type="checkbox" checked>
+      <span class="slider"></span>
+      <p class="toggletext">Searchbar</p>
+    </label>
+    
+    <label class="switch">
+      <input name="links" onclick="toggleComponent('links')" type="checkbox" checked>
+      <span class="slider"></span>
+      <p class="toggletext">Quicklinks</p>
+    </label>
+    
+    <label class="switch">
+      <input name="percent1" onclick="toggleComponent('percent1')" type="checkbox" checked>
+      <span class="slider"></span>
+      <p class="toggletext">Work Hours percent</p>
+    </label>
+    
+    <label class="switch">
+      <input name="percent2" onclick="toggleComponent('percent2')" type="checkbox" checked>
+      <span class="slider"></span>
+      <p class="toggletext">Weekend percent</p>
+    </label>
+    
+    <label class="switch">
+      <input name="excuse1" onclick="toggleComponent('excuse1')" type="checkbox" checked>
+      <span class="slider"></span>
+      <p class="toggletext">Excuse</p>
+    </label>
+    
+    <label class="switch">
+      <input name="calendar1" onclick="toggleComponent('calendar1')" type="checkbox" checked>
+      <span class="slider"></span>
+      <p class="toggletext">GithubCalendar</p>
+    </label>
+    
+    <p>Custom youtube url</p>
+    <input type="text" id="inputField" placeholder="E.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ">
 
   </div>
 
