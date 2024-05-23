@@ -1,3 +1,11 @@
+.btn-flex {
+  display: flex;
+}
+
+.button2 {
+  margin-left: auto;
+}
+
 /* sliders */
 
 .toggletext {

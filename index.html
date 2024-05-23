@@ -59,6 +59,14 @@
     <p>Custom youtube url</p>
     <input type="text" id="inputField" placeholder="E.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ">
 
+    <p>Set countdown</p>
+    <input type="text" id="countdownName" placeholder="countdown name">
+    <input type="datetime-local" id="countdownField">
+    <div class="btn-flex">
+      <button class="button" onclick="clearCountdown()"><p>Remove</p></button>
+      <button class="button2" onclick="setTargetDate(), setCountdownName()"><p>Set Countdown</p></button>
+    </div>
+
   </div>
 
   
@@ -113,6 +121,11 @@
         <a class="link" href="https://www.youtube.com/"><img src="https://www.youtube.com/s/desktop/661c298b/img/favicon_144x144.png" width="24px" height="24px"><h1 class="linktext">Youtube</h1></a>
         <a class="link" href="0"><img src="https://play-lh.googleusercontent.com/bGn6qxUHwqZmgtv7RwgxCzl4Uy26SFQrJljVmoOvoIKWa-Xty8s0vOUWcgovUAEAKXnI" width="24px" height="24px"><h1 class="linktext">Homeassistant</h1></a>
       </div>
+    </div>
+
+    <div id="countdown1">
+      <h1 class="timepercent" id="countdownname"></h1>
+      <h1 class="timepercent" id="countdown"></h1>
     </div>
 
     <div id="percent1">

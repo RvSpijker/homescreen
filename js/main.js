@@ -1,33 +1,3 @@
-// Check if the browser supports notifications
-if (!("Notification" in window)) {
-  alert("This browser does not support desktop notification");
-}
-
-// Ask the user for permission to show notifications
-else if (Notification.permission !== "denied") {
-  Notification.requestPermission().then(function (permission) {
-    // If the user accepts, schedule the notification for 1 PM
-    if (permission === "granted") {
-      var now = new Date();
-      var oneHourFromNow = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 13, 0, 0); // Set time to 1 PM
-      
-      var timeUntilNotification = oneHourFromNow.getTime() - now.getTime();
-      
-      // Schedule the notification for 1 PM
-      setTimeout(function() {
-        var options = {
-          icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAN0yta8AWJPGQA_ulSF3gMXEXS2r3uWBk-fuKkPvrYQ&s', // Replace 'path/to/your/image.png' with the actual path to your image
-          body: 'Time to Walk' // Add a body text if needed
-        };
-        
-        var notification = new Notification("Time to Walk!", options);
-      }, timeUntilNotification);
-    }
-  });
-}
-
-
-
 // Add this JavaScript to handle the settings button functionality
 document.getElementById('settingsBtn').addEventListener('click', function() {
   document.getElementById('settingsSlider').classList.toggle('open');
@@ -304,11 +274,6 @@ if (savedValue) {
     video.src = videoURL;
   }
 
-  // Call the function to update the video URL when the page loads
-  window.onload = function() {
-    updateVideoURL();
-  };
-
   document.getElementById('bg').addEventListener('load', function() {
     setTimeout(function() {
       var placeholderBg = document.querySelector('.placeholder-bg');
@@ -319,4 +284,81 @@ if (savedValue) {
       }, 1000); // Wait for 1 second before hiding (sync with the transition duration)
     }, 2000); // 2000 milliseconds = 2 seconds
   });
-  
+
+
+
+        // Variables for time units
+        var days, hours, minutes, seconds;
+        var countdown = document.getElementById("countdown");
+        var interval;
+
+        // Function to set the target date
+        function setTargetDate() {
+            var input = document.getElementById("countdownField").value;
+            if (input) {
+                var target_date = new Date(input).getTime();
+                localStorage.setItem("target_date", target_date);
+                if (interval) {
+                    clearInterval(interval);
+                }
+                startCountdown(target_date);
+            }
+        }
+
+        // Function to start the countdown
+        function startCountdown(target_date) {
+            interval = setInterval(function () {
+                var current_date = new Date().getTime();
+                var seconds_left = (target_date - current_date) / 1000;
+
+                days = parseInt(seconds_left / 86400);
+                seconds_left = seconds_left % 86400;
+
+                hours = parseInt(seconds_left / 3600);
+                seconds_left = seconds_left % 3600;
+
+                minutes = parseInt(seconds_left / 60);
+                seconds = parseInt(seconds_left % 60);
+
+                countdown.innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+            }, 1000);
+        }
+
+        // Check localStorage for saved target date
+        window.onload = function() {
+            updateVideoURL();
+            inputField.value = localStorage.getItem('videolink');
+            var saved_target_date = localStorage.getItem("target_date");
+            if (saved_target_date) {
+              countdownField.value = new Date(parseInt(saved_target_date)).toISOString().substring(0, 16);
+                startCountdown(parseInt(saved_target_date));
+            } else {
+                // Optional: set a default initial countdown date
+            }
+
+            // countdown name
+
+            var saved_countdown_name = localStorage.getItem("countdown_name");
+            if (saved_countdown_name) {
+                countdownname.innerHTML = saved_countdown_name;
+                countdownName.value = saved_countdown_name;
+            }
+        };
+
+        // Function set countdown name
+        function setCountdownName() {
+            var input = document.getElementById("countdownName").value;
+            localStorage.setItem("countdown_name", input);
+            countdownname.innerHTML = input;
+        }
+
+        function clearCountdown() {
+          localStorage.removeItem("target_date");
+          localStorage.removeItem("countdown_name");
+          countdownname.innerHTML = null;
+          countdownName.value = null;
+          countdownField.value = null;
+          countdown.innerHTML = null;
+          clearInterval(interval);
+        }
