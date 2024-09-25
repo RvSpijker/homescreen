@@ -327,7 +327,7 @@ if (savedValue) {
 
         // Check localStorage for saved target date
         window.onload = function() {
-            updateVideoURL();
+            // updateVideoURL();
             inputField.value = localStorage.getItem('videolink');
             var saved_target_date = localStorage.getItem("target_date");
             if (saved_target_date) {
